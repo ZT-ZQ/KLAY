@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Barlow:ital,wght@0,400;0,700;1,900&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Anton", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-val-red: #FF4655;
+  --color-val-dark: #0F1923;
+  --color-val-white: #ECE8E1;
+  --color-val-cyan: #00F5FF;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #0F1923;
+  color: #ECE8E1;
+}
+
+canvas {
+  image-rendering: pixelated;
+}
+
+.val-button {
+  position: relative;
+  clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.val-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px #ECE8E1;
+}
+
+.val-button:active {
+  transform: translate(0, 0);
+  box-shadow: 0px 0px 0px #ECE8E1;
+}
+
+.val-panel {
+  clip-path: polygon(0 0, 95% 0, 100% 5%, 100% 100%, 5% 100%, 0 95%);
+}
+
+.val-header {
+  clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 245, 255, 0.1);
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+}
